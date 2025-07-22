@@ -1,4 +1,5 @@
 import { Heading, Button } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 export const NavBar = () => {
 
@@ -13,14 +14,12 @@ export const NavBar = () => {
     <>
     <ul style={styling}>
         <li>
-            <Heading size={'2xl'} color={'black'}>Study The Text</Heading>
+            <Link to='/'><Heading size={'2xl'} color={'black'}>Study The Text</Heading></Link>
         </li>
         <li>
-            <Button size={'md'}>Admin Login</Button>
+            <Link to='/login'><Button size={'md'}>Admin Login</Button></Link>
         </li>
     </ul>
-        
-
     </>
   )
 }

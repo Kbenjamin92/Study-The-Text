@@ -26,7 +26,7 @@ export const HomePage = () => {
                 <CategoryDropdown  
                     categories={categories} 
                     selected={selectedCategory} 
-                    onChange={() => console.log(selectedCategory)}/>
+                    onChange={setSelectedCategory}/>
             </Container>
             <Container>
                 <StudyCard 

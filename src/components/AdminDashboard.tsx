@@ -6,25 +6,23 @@ import {
   Input,
   Textarea,
   VStack,
-  useToast,
 } from "@chakra-ui/react";
+import { toaster } from "../components/ui/toaster"
 import { useState } from "react";
+import { HiUpload } from "react-icons/hi";
 
 export const AdminDashboard = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [testimony, setTestimony] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const toast = useToast();
 
   const handleSubmit = () => {
     if (!title || !summary || !testimony || !file) {
-      toast({
+      toaster.create({
         title: "Missing Fields",
         description: "Please complete all fields and upload a file.",
-        status: "warning",
-        duration: 3000,
-        isClosable: true,
+        duration: 3000
       });
       return;
     }
@@ -32,13 +30,11 @@ export const AdminDashboard = () => {
     // Simulate upload — you can replace this with real upload logic later
     console.log({ title, summary, testimony, file });
 
-    toast({
+    toaster.create({
       title: "Content submitted",
       description: "Your Bible study entry has been added.",
-      status: "success",
       duration: 3000,
-      isClosable: true,
-    });
+    })
 
     // Reset form
     setTitle("");
@@ -49,7 +45,7 @@ export const AdminDashboard = () => {
 
   return (
     <Box maxW="lg" mx="auto" mt={10} p={6} boxShadow="lg" borderRadius="md">
-      <VStack spacing={4} align="stretch">
+      <VStack align="stretch">
         <Field.Root>
           <Field.Label>Title</Field.Label>
           <Input value={title} onChange={(e) => setTitle(e.target.value)} />

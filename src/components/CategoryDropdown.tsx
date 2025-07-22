@@ -1,5 +1,4 @@
-// components/CategoryDropdown.tsx
-import { Select } from '@chakra-ui/react';
+
 
 interface Props {
   categories: string[];
@@ -9,12 +8,15 @@ interface Props {
 
 export const CategoryDropdown = ({ categories, selected, onChange }: Props) => {
   return (
-    <Select.Item value={selected} onChange={(e) => onChange(e.target.value)} placeholder="Select Bible Topic">
+    <select value={selected} onChange={(e) => onChange(e.target.value)}>
+      <option value="" disabled>
+        Select Bible Topic
+      </option>
       {categories.map((cat) => (
         <option key={cat} value={cat}>
           {cat}
         </option>
       ))}
-    </Select.Item>
+    </select>
   );
 }
