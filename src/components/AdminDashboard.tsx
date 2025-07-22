@@ -14,11 +14,10 @@ import { HiUpload } from "react-icons/hi";
 export const AdminDashboard = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
-  const [testimony, setTestimony] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
   const handleSubmit = () => {
-    if (!title || !summary || !testimony || !file) {
+    if (!title || !summary || !file) {
       toaster.create({
         title: "Missing Fields",
         description: "Please complete all fields and upload a file.",
@@ -28,7 +27,7 @@ export const AdminDashboard = () => {
     }
 
     // Simulate upload — you can replace this with real upload logic later
-    console.log({ title, summary, testimony, file });
+    console.log({ title, summary, file });
 
     toaster.create({
       title: "Content submitted",
@@ -39,7 +38,6 @@ export const AdminDashboard = () => {
     // Reset form
     setTitle("");
     setSummary("");
-    setTestimony("");
     setFile(null);
   };
 
@@ -57,19 +55,7 @@ export const AdminDashboard = () => {
         </Field.Root>
 
         <Field.Root>
-          <Field.Label>Testimony</Field.Label>
-          <Textarea value={testimony} onChange={(e) => setTestimony(e.target.value)} />
-        </Field.Root>
-
-        <Field.Root>
           <Field.Label>Upload File (Word or PDF)</Field.Label>
-          {/* <Input
-            type="file"
-            accept=".doc,.docx,.pdf"
-            onChange={(e) => {
-              const uploadedFile = e.target.files?.[0];
-              if (uploadedFile) setFile(uploadedFile);
-            }} />*/}
             <FileUpload.Root>
               <FileUpload.HiddenInput />
               <FileUpload.Trigger asChild>

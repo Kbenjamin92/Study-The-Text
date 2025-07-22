@@ -11,7 +11,6 @@ export const App = () => {
   return (
     <>
     <NavBar />
-     
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path="/login" element={<AdminLogin />} />
