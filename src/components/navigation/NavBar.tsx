@@ -1,6 +1,6 @@
 import { Heading, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 export const NavBar = () => {
     const context = useAuth();

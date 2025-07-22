@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
-import { StudyCard } from './StudyCard'
-import { CategoryDropdown } from './CategoryDropdown'
+import { StudyCard } from '../StudyCard'
+import { CategoryDropdown } from '../CategoryDropdown'
 import { Container, Stack } from '@chakra-ui/react'
 
 export const HomePage = () => {

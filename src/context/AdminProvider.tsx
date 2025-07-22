@@ -26,6 +26,8 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
         password === ADMIN_CREDENTIALS.password
       ) {
         setIsAdmin(true);
+        setUsername("");
+        setPassword("");
       } else {
           toaster.create({
               title: "Login failed",

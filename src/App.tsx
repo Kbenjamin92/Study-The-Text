@@ -1,10 +1,10 @@
 import './App.css'
-import { NavBar } from './components/NavBar'
-import { HomePage } from './components/HomePage'
+import { NavBar } from './components/navigation/NavBar'
+import { HomePage } from './components//home/HomePage'
 import { Routes, Route } from "react-router-dom";
-import { AdminLogin } from "./components/AdminLogin";
-import { AdminDashboard } from "./components/AdminDashboard";
-import { PrivateRoute } from "./components/ProtectedRoute";
+import { AdminLogin } from "./components/auth/AdminLogin";
+import { AdminDashboard } from "./components/admin/AdminDashboard";
+import { PrivateRoute } from "./components/admin/ProtectedRoute";
 
 export const App = () => {
 

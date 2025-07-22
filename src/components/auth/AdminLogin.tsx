@@ -1,9 +1,9 @@
 import {
   Box, Input, Button, Field, VStack,
 } from "@chakra-ui/react";
-import { Toaster } from "../components/ui/toaster"
-import { PasswordInput } from "../components/ui/password-input"
-import { useAuth } from "../hooks/useAuth";
+import { Toaster } from "../../components/ui/toaster"
+import { PasswordInput } from "../../components/ui/password-input"
+import { useAuth } from '../../hooks/useAuth';
 
 export const AdminLogin = () => {
 

@@ -6,8 +6,9 @@ import {
   Input,
   Textarea,
   VStack,
+  Heading,
 } from "@chakra-ui/react";
-import { toaster } from "../components/ui/toaster"
+import { toaster } from "../ui/toaster"
 import { useState } from "react";
 import { HiUpload } from "react-icons/hi";
 
@@ -43,6 +44,9 @@ export const AdminDashboard = () => {
 
   return (
     <Box maxW="lg" mx="auto" mt={10} p={6} boxShadow="lg" borderRadius="md">
+      <Heading as="h1" size="xl" mb={6}>
+       Bible Study Details
+      </Heading>
       <VStack align="stretch">
         <Field.Root>
           <Field.Label>Title</Field.Label>
