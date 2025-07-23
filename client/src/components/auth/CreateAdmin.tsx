@@ -25,7 +25,9 @@ const context = useAuth();
     username, 
     setUsername, 
     password, 
-    setPassword, 
+    setPassword,
+    confirmPassword,
+    setConfirmPassword, 
     handleSignup } = context;
 
     const {
@@ -35,7 +37,7 @@ const context = useAuth();
 
   const onSubmit: SubmitHandler<AdminContextType> = (data) => {
     console.log(data);
-    handleSignup();
+    handleSignup(data);
   }
   return (
     <>
@@ -83,10 +85,10 @@ const context = useAuth();
           <Field.Root>
             <Field.Label>Confirm Password</Field.Label>
               <PasswordInput 
-                {...register("password", { required: true })}
+                {...register("confirmPassword", { required: true })}
                 type="password" 
-                value={password} 
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
+                value={confirmPassword} 
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)} />
           </Field.Root>
           <Container 
             display='flex' 

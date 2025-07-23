@@ -13,11 +13,13 @@ export interface AdminContextType {
   setLastName: (lastName: string) => void;
   username: string;
   password: string;
+  confirmPassword: string;
+  setConfirmPassword: (confirmPassword: string) => void;
   setUsername: (username: string) => void;
   setPassword: (password: string) => void;
   handleLogin: () => void;
   logout: () => void;
-  handleSignup: () => void;
+  handleSignup: (data: AdminContextType) => void;
   isAdmin: boolean;
   setIsAdmin: (isAdmin: boolean) => void;
   data: AdminData;

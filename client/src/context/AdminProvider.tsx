@@ -4,6 +4,7 @@ import type { AdminData } from "../interface";
 import { useNavigate } from "react-router-dom";
 import { toaster } from "../components/ui/toaster";
 import { AdminContext } from "./AdminContext";
+import type { AdminContextType } from "../interface";
 import axios from "axios";
 
 export const AdminProvider = ({ children }: { children: ReactNode }) => {
@@ -20,38 +21,46 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isAdmin, setIsAdmin] = useState(() => {
     return localStorage.getItem("adminToken") !== null;
   });
 
   // Admin Signup
-  const handleSignup = async () => {
-    try {
-      const res = await axios.post(`${API}/auth/register`, {
-        firstName,
-        lastName,
-        username,
-        password,
-      });
-
+  const handleSignup = async (registerAdminData: AdminContextType) => {
+   try {
+    if (password !== confirmPassword) {
       toaster.create({
-        title: "Signup successful",
-        description: `Welcome ${res.data.username}!`,
-        type: "success",
-      });
-      setFirstName("");
-      setLastName("");
-      setUsername("");
-      setPassword("");
-      navigate("/login");
-    } catch (err: any) {
-      toaster.create({
-        title: "Signup failed",
-        description: err.response?.data?.message || "Error occurred",
+        title: "Passwords do not match",
+        description: "Please make sure both password fields match.",
         type: "error",
       });
+      return;
     }
+
+    const res = await axios.post(`${API}/auth/register`, registerAdminData);
+
+    toaster.create({
+      title: "Signup successful",
+      description: `Welcome ${res.data.username}!`,
+      type: "success",
+    });
+
+    setFirstName("");
+    setLastName("");
+    setUsername("");
+    setPassword("");
+    setConfirmPassword(""); // ← Don't forget this
+    navigate("/login");
+  } catch (err: any) {
+    toaster.create({
+      title: "Signup failed",
+      description: err.response?.data?.message || "Error occurred",
+      type: "error",
+    });
   }
+};
+
 
   //  Admin Login
   const handleLogin = async () => {
@@ -101,7 +110,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AdminContext.Provider
       value={{
-        data,
+        data, 
         setData,
         firstName,
         setFirstName,
@@ -111,6 +120,8 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
         setUsername,
         password,
         setPassword,
+        confirmPassword,
+        setConfirmPassword,
         handleLogin,
         isAdmin,
         setIsAdmin,
