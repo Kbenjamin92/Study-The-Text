@@ -1,5 +1,6 @@
 import {
   Box, Input, Button, Field, VStack,
+  Container
 } from "@chakra-ui/react";
 import { Toaster } from "../ui/toaster"
 import { PasswordInput } from "../ui/password-input"
@@ -7,6 +8,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useForm } from "react-hook-form"
 import type { SubmitHandler } from "react-hook-form";
 import type { AdminContextType } from '../../interface';
+import { Link } from "react-router-dom";
 
 
 //  added the react hook forms 
@@ -58,11 +60,26 @@ const context = useAuth();
                 value={password} 
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
           </Field.Root>
-          <Button 
-            type='submit' 
-            width='100%' 
-            marginTop='10px' 
-            bgColor="black">Login</Button>
+          <Container 
+            display='flex' 
+            flexDirection='row' 
+            alignItems='flex-start' 
+            justifyContent='space-between'
+            padding={0}>
+            <Button 
+                type='submit' 
+                width='50%' 
+                marginTop='10px' 
+                bgColor="black">Login
+            </Button>
+            <Container display='flex' flexDirection='row' alignItems='flex-start' justifyContent='space-envenly'>
+              <Link to='/create-admin'><Button 
+                  bgColor='dodgerblue' 
+                  marginTop='10px' 
+                  fontSize='sm'>Register here</Button>
+              </Link>
+            </Container>
+          </Container>
         </VStack>
         <Toaster />
       </Box>

@@ -7,34 +7,37 @@ export const NavBar = () => {
     if (!context) {
         throw new Error("useAuth must be used within AuthProvider");
     }
-    const { isAdmin, setIsAdmin } = context;
-    const styling = {
+    const { isAdmin, logout } = context;
+    const styling: React.CSSProperties = {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
         padding: '10px 20px',
         backgroundColor: '#f5f5f5',
     }
-    const adminButtonText = isAdmin ? 'Logout' : 'Admin Login';
-    console.log("Admin Access:", adminButtonText);
-
-    const logout = () => {
-        setIsAdmin(false);
-        localStorage.removeItem("isAdmin");
+    const navStyling: React.CSSProperties = {
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        padding: '10px 20px',
+        backgroundColor: '#f5f5f5',
     }
-
+    const adminButtonText = isAdmin ? 'Logout' : 'Admin Login';
+    
   return (
     <>
     <ul style={styling}>
         <li>
             <Link to='/'><Heading size={'2xl'} color={'black'}>Study The Text</Heading></Link>
         </li>
-        <li>
+    
+        <ul style={navStyling}>
+            <li>
             { isAdmin ? (
                 <Link to='/'>
                     <Button 
                         size={'md'} 
-                        onClick={() => logout()}>
+                        rounded='full'
+                        onClick={isAdmin && logout}>
                         { adminButtonText }
                     </Button>
                 </Link>
@@ -43,7 +46,9 @@ export const NavBar = () => {
                     <Button size={'md'}>{ adminButtonText }</Button>
                 </Link>
             )}
-        </li>
+            </li>
+        </ul>
+        
     </ul>
     </>
   )
