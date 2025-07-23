@@ -15,7 +15,7 @@ export const NavBar = () => {
         padding: '10px 20px',
         backgroundColor: '#f5f5f5',
     }
-    const adminButtonText = isAdmin === true ? 'Logout' : 'Admin Login';
+    const adminButtonText = isAdmin ? 'Logout' : 'Admin Login';
     console.log("Admin Access:", adminButtonText);
 
     const logout = () => {
