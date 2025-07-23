@@ -1,8 +1,8 @@
 import {
   Box, Input, Button, Field, VStack,
 } from "@chakra-ui/react";
-import { Toaster } from "../../components/ui/toaster"
-import { PasswordInput } from "../../components/ui/password-input"
+import { Toaster } from "../ui/toaster"
+import { PasswordInput } from "../ui/password-input"
 import { useAuth } from '../../hooks/useAuth';
 import { useForm } from "react-hook-form"
 import type { SubmitHandler } from "react-hook-form";

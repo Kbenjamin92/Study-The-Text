@@ -1,0 +1,23 @@
+# .gitignore
+
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.*    # Optional: ignore all .env.development, .env.production, etc.
+
+# Prisma local output (optional)
+prisma/dev.db
+prisma/migrations/
+
+# Logs
+*.log
+
+# Build output
+dist/
+build/
+
+# OS-specific
+.DS_Store
+Thumbs.db
