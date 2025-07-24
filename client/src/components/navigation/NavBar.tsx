@@ -1,5 +1,5 @@
 import { Heading, Button } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth';
 
 export const NavBar = () => {
@@ -21,7 +21,10 @@ export const NavBar = () => {
         padding: '10px 20px',
         backgroundColor: '#f5f5f5',
     }
+    const location = useLocation();
+    const isBibleStudiesPage = location.pathname === "/admin/bible-studies";
     const adminButtonText = isAdmin ? 'Logout' : 'Admin Login';
+    const homeButtonText = isBibleStudiesPage ? 'Dashboard' : 'Bible Studies';
     
   return (
     <>
@@ -33,17 +36,44 @@ export const NavBar = () => {
         <ul style={navStyling}>
             <li>
             { isAdmin ? (
-                <Link to='/'>
-                    <Button 
-                        size={'md'} 
-                        rounded='full'
-                        onClick={isAdmin && logout}>
-                        { adminButtonText }
-                    </Button>
-                </Link>
+                <ul style={{ display: 'flex', gap: '10px', flexDirection: 'row' }}>
+                    <li>
+                        {
+                        isBibleStudiesPage ? (
+                            <Link to='/admin/dashboard'>
+                                <Button 
+                                    size={'md'} 
+                                    rounded='full'
+                                    >
+                                    { homeButtonText }
+                                </Button>
+                            </Link>
+                        ) : (
+                            <Link to="/admin/bible-studies">
+                                <Button 
+                                    size={'md'} 
+                                    rounded='full'
+                                    >
+                                    { homeButtonText }
+                                </Button>
+                            </Link>
+                        )
+                        }
+                    </li>
+                    <li>
+                         <Link to='/'>
+                            <Button 
+                                size={'md'} 
+                                rounded='full'
+                                onClick={isAdmin && logout}>
+                                { adminButtonText }
+                            </Button>
+                        </Link>
+                    </li>
+                </ul>
             ) : (
                 <Link to='/login'>
-                    <Button size={'md'}>{ adminButtonText }</Button>
+                    <Button size={'md'} rounded='full'>{ adminButtonText }</Button>
                 </Link>
             )}
             </li>

@@ -110,10 +110,12 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (isAdmin) {
-      navigate("/admin");
-    }
-  }, [isAdmin, navigate]);
+    const token = localStorage.getItem("adminToken");
+    if (isAdmin && token) {
+    navigate("/admin/dashboard");
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAdmin]);
 
   return (
     <AdminContext.Provider
