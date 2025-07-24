@@ -7,7 +7,7 @@ import { PasswordInput } from "../ui/password-input"
 import { useAuth } from '../../hooks/useAuth';
 import { useForm } from "react-hook-form"
 import type { SubmitHandler } from "react-hook-form";
-import type { AdminContextType } from '../../interface';
+import type { AdminSignupInput } from '../../interface';
 import { Link } from "react-router-dom";
 
 //  added the react hook forms 
@@ -33,11 +33,15 @@ const context = useAuth();
     const {
     register,
     handleSubmit
-  } = useForm<AdminContextType>()
+  } = useForm<AdminSignupInput>()
+    // figure out how to pass the data to the handleSignup function
 
-  const onSubmit: SubmitHandler<AdminContextType> = (data) => {
-    console.log(data);
-    handleSignup(data);
+
+  const onSubmit: SubmitHandler<AdminSignupInput> = async (data) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { confirmPassword, ...signupData } = data;
+    console.log(signupData);
+    await handleSignup(signupData);
   }
   return (
     <>

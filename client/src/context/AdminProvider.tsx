@@ -4,7 +4,7 @@ import type { AdminData } from "../interface";
 import { useNavigate } from "react-router-dom";
 import { toaster } from "../components/ui/toaster";
 import { AdminContext } from "./AdminContext";
-import type { AdminContextType } from "../interface";
+import type { AdminSignupInput } from "../interface";
 import axios from "axios";
 
 export const AdminProvider = ({ children }: { children: ReactNode }) => {
@@ -25,9 +25,10 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(() => {
     return localStorage.getItem("adminToken") !== null;
   });
+  const [token, setToken] = useState();
 
   // Admin Signup
-  const handleSignup = async (registerAdminData: AdminContextType) => {
+  const handleSignup = async (registerAdminData: AdminSignupInput) => {
    try {
     if (password !== confirmPassword) {
       toaster.create({
@@ -38,7 +39,11 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
-    const res = await axios.post(`${API}/auth/register`, registerAdminData);
+    const res = await axios.post(`${API}/auth/register`, registerAdminData, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log("Signup response:", res.data);
 
     toaster.create({
       title: "Signup successful",
@@ -50,8 +55,9 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
     setLastName("");
     setUsername("");
     setPassword("");
-    setConfirmPassword(""); // ← Don't forget this
+    setConfirmPassword(""); 
     navigate("/login");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     toaster.create({
       title: "Signup failed",
@@ -72,6 +78,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
 
       const token = res.data.token;
       localStorage.setItem("adminToken", token);
+      setToken(token);
       setIsAdmin(true);
       setUsername("");
       setPassword("");
@@ -81,6 +88,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
         description: "Welcome admin!",
         type: "success",
       });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       toaster.create({
         title: "Login failed",
@@ -126,7 +134,8 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
         isAdmin,
         setIsAdmin,
         logout,
-        handleSignup
+        handleSignup,
+        token
       }}
     >
       {children}

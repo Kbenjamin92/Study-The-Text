@@ -19,12 +19,22 @@ export interface AdminContextType {
   setPassword: (password: string) => void;
   handleLogin: () => void;
   logout: () => void;
-  handleSignup: (data: AdminContextType) => void;
+  handleSignup: (data: AdminSignupInput) => void;
   isAdmin: boolean;
   setIsAdmin: (isAdmin: boolean) => void;
   data: AdminData;
   setData: (newData: AdminData) => void;
+  token?: string;
 };
+
+export interface AdminSignupInput {
+  firstName: string;
+  lastName: string;
+  username: string;
+  password: string;
+  confirmPassword?: string | null;
+}
+
 
 export interface User {
   id: string;
