@@ -30,7 +30,7 @@ export const NavBar = () => {
     <>
     <ul style={styling}>
         <li>
-            <Link to='/'><Heading size={'2xl'} color={'black'}>Study The Text</Heading></Link>
+            <Link to='/'><Heading size={'2xl'} color={'black'}>Study The Word</Heading></Link>
         </li>
     
         <ul style={navStyling}>
