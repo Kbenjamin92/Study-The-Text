@@ -17,7 +17,7 @@ export const HomePage = () => {
   return (
     <>
         <Container padding='2rem'>
-            <h1>Welcome to Study The Text</h1>
+            <h1>Welcome to Study The Word</h1>
             <p>Explore various Bible study topics and resources.</p>
         </Container>
 
